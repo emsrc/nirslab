@@ -39,12 +39,13 @@ while (~feof(fid))
     end
 end
 
+data.events = map_events(data);
+
 fclose(fid);
 get_exp_name();
 
 
 % nested functions using 'data'
-
 
     function read_legend(fid)
         line = fgetl(fid); % skip columns headers

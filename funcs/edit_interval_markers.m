@@ -16,37 +16,27 @@ function data = edit_interval_markers(data, signal_pat, ...
 %       figure title
 %
 % Plots signal(s) together with green lines for begin markers and 
-% red lines for end markers ('H'). Lines can be dragged to new position.
+% red lines for end markers. Lines can be dragged to new position.
 % Markers are updated accordingly in events of returned data.
 % Validity of marker sequence is checked prior to return.
 %
 % Caveats: 
+% - only changes events map, not events column
 % - number of start markers must equal number of end markers
 % - markers must be single characters
 % - events must not contain combined markers like 'I G'
 
-null_marker = '0';
-event_pat = 'Event';
-
-signal = colmat(data, signal_pat);
-events = col(data, event_pat);
-events = events{1};
-
-% find start and end indices of markers 
-start_idx = get_indices_from_events(start_marker, events);
-end_idx = get_indices_from_events(end_marker, events);
+% get start and end indices of markers 
+start_idx = data.events(start_marker);
+end_idx = data.events(end_marker);
 
 assert(length(start_idx) == length(end_idx), ...
     'Unequal number of start (%d) and end (%d) markers', ...
     length(start_idx), length(end_idx))
 
-assert (length(start_idx) > 0, ...
-    'No markers found') 
+assert (~isempty(start_idx), 'No markers found') 
 
-% delete old markers in events
-events(start_idx) = {null_marker};
-events(end_idx) = {null_marker};
-
+signal = colmat(data, signal_pat);
 f = figure;
 plot(signal);
 title(label);
@@ -54,6 +44,7 @@ title(label);
 start_handles = draw_marker_lines(start_idx, 'green');
 end_handles = draw_marker_lines(end_idx, 'red');
 
+% the "close_request" checks markers and updates start_idx and end_idx
 set(f,'CloseRequestFcn',@close_request)
 valid_markers = false;
 
@@ -63,15 +54,10 @@ while ~valid_markers
 end
 
 % update test data
-i = find(colsel(data, 'Event'));
-data.samples{i}(start_idx) = {start_marker};
-data.samples{i}(end_idx) = {end_marker};
+data.events(start_marker) = start_idx';
+data.events(end_marker) = end_idx';
 
 
-    function indices = get_indices_from_events(events, marker)        
-        indices = find(strncmpi(marker, events, 1));
-    end
- 
 
     function handles = draw_marker_lines(indices, color)    
         handles = [];
@@ -121,7 +107,6 @@ data.samples{i}(end_idx) = {end_marker};
         % is irrelevant
         indices = sort(indices);
     end
-
         
 end
 

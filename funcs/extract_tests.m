@@ -65,6 +65,10 @@ for t=1:size(start_samp,1)
     test.num_cols = num_cols;
     test.num_samples = length(test.samples{1});
     
+    % create mapping of event markers to their indices 
+    % (different from the raw mapping!)
+    test.events = map_events(test);
+    
     test_data.test(t) = test;
 end
 

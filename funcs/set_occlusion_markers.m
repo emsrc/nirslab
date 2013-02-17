@@ -1,6 +1,7 @@
 function data = set_occlusion_markers(data,...
     start_marker, end_marker, num_occl)
-% Automatically set start and end marker for occlusions in cuff signal 
+% Automatically set start and end marker for occlusions in cuff signal.
+% Markers are saved in event map only, not in events column. 
 %
 % data = set_occlusion_markers(data, start_marker, end_marker, num_occl)
 % 
@@ -13,22 +14,9 @@ function data = set_occlusion_markers(data,...
 %   num_occl: 
 %       number of occlusions 
 %
-% Warning: old start and end markers will be deleted! 
-
-null_marker = '0';
+% Warning: old start and end markers in event map will be deleted! 
 
 cuffp_signal = colmat(data, 'AD1');
-events = col(data, 'Event');
-events = events{1};
-
-% find start and end of markers 
-starts = strncmpi(start_marker, events, 1);
-ends = strncmpi(end_marker, events, 1);
-
-% delete old markers in events
-events(starts) = {null_marker};
-events(ends) = {null_marker};
-
 % define delta (half of max-min)
 maxcuffp = max(cuffp_signal);
 mincuffp = min(cuffp_signal);
@@ -41,9 +29,9 @@ end
 % peak detection
 [maxtab, mintab] = minpeakdet(cuffp_signal, delta);
 
-% get start and end indices
-start_idx = mintab(:,1)'
-end_idx = maxtab(:,1)'
+% get start and end indices (possibly too may/few)
+start_idx = mintab(:,1)';
+end_idx = maxtab(:,1)';
 
 % spacing between fillers
 filler_spacing = round(length(cuffp_signal) / 100);
@@ -67,10 +55,9 @@ elseif length(end_idx) > num_occl
     end_idx = end_idx(1:num_occl);
 end
 
-% update test data
-i = find(colsel(data, 'Event'));
-data.samples{i}(start_idx) = {start_marker};
-data.samples{i}(end_idx) = {end_marker};
+% update events map
+data.events(start_marker) = start_idx;
+data.events(end_marker) = end_idx;
 
 end
 
