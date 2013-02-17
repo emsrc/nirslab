@@ -5,7 +5,7 @@
 
 warning on;
 
-subjects = 3:3;
+subjects = 3:3; % or [2,12]
 periods = 1:1;
 days = 1:3;
 nirs = {'nirsO' 'nirsP' 'nirsO_od' 'nirsP_od'};

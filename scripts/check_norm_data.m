@@ -6,7 +6,7 @@
 warning('on', 'verbose');
 warning('off', 'backtrace')
 
-subjects = 3:3;
+subjects = 3:4;
 periods = 1:1;
 days = 1:3;
 
