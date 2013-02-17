@@ -1,11 +1,11 @@
-function  norm_data = extract_tests(raw_data, ...
+function  test_data = extract_tests(raw_data, ...
     start_marker, end_marker, start_margin, end_margin)
 
 % extract samples for tests from oxymon/portamon samples according 
 % to start and end markers
 %
-% subj: struct array
-%    subject data
+% raw_data: struct array
+%    raw data for subject
 % start_marker: char
 %    start marker consisting of a single char 
 %    (matching is case-insensitive and only on the first character)
@@ -18,6 +18,10 @@ function  norm_data = extract_tests(raw_data, ...
 % end_margin: float 
 %    end margin, time between end marker and end of samples 
 %    in seconds
+%
+% test_data: struct array
+%    struct with field 'test' containing the data per test 
+
 
 num_cols = raw_data.num_cols;
     
@@ -48,20 +52,20 @@ end_samp = min(double(raw_data.num_samples),...
 for t=1:size(start_samp,1)
     range = start_samp(t):end_samp(t);
     % allocate cell struct
-    test_data.samples = cell(1, num_cols);
+    test.samples = cell(1, num_cols);
     
     % slice each sampled signal (column)
     for i=1:num_cols
-        test_data.samples{i} = raw_data.samples{i}(range);
+        test.samples{i} = raw_data.samples{i}(range);
     end
     
     % copy legend etc too, so we can use col(), event_samp(), etc.
-    test_data.legend = raw_data.legend;
-    test_data.export_sample_rate = raw_data.export_sample_rate;
-    test_data.num_cols = num_cols;
-    test_data.num_samples = length(test_data.samples{1});
+    test.legend = raw_data.legend;
+    test.export_sample_rate = raw_data.export_sample_rate;
+    test.num_cols = num_cols;
+    test.num_samples = length(test.samples{1});
     
-    norm_data.test(t) = test_data;
+    test_data.test(t) = test;
 end
 
 end

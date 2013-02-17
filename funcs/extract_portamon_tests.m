@@ -1,12 +1,15 @@
-function subj = extract_portamon_tests(subj, sync_marker, ...
+function test_data = extract_portamon_tests(...
+    raw_nirso_data, raw_nirsp_data, sync_marker, ...
     start_marker, end_marker, ...
     start_margin, end_margin)
 %
 % extract samples for tests from portamon samples according to markers
-% in the corresponding oxymon file 
+% in the corresponding oxymon data
 %
-% subj: struct array
-%    subject data containing raw oxymon and portamon samples
+% raw_nirso_data: struct array
+%    raw oxymon data for subject
+% raw_nirsp_data: struct array
+%    raw portamon data for subject
 % sync_marker: char
 %     synchronization marker occurring in both oxymon and portamon samples
 % start_marker: char
@@ -21,31 +24,20 @@ function subj = extract_portamon_tests(subj, sync_marker, ...
 % end_margin: float 
 %    end margin, time between end marker and end of samples 
 %    in seconds
+%
+% test_data: struct array
+%    struct with field 'test' containing the data per test 
+
 
 % maximum time difference allowed between offsets in ms
 max_offset = 1000;
 
-for p = 1:length(subj.period)
-    for d = 1:length(subj.period(p).day)    
-        if ( ~isfield(subj.period(p).day(d).raw, 'nirsO') || ...
-             ~isfield(subj.period(p).day(d).raw, 'nirsP') )
-            warning('no portamon tests extracted for period=%d day=%d', p, d)
-            continue
-        end
-        
-        % lazy copy of oxymon data for reading only
-        raw_nirso_data = subj.period(p).day(d).raw.nirsO;
-        % copy of portamon data to be used for writing markers
-        raw_nirsp_data = subj.period(p).day(d).raw.nirsP;
-        
-        raw_nirsp_data = copy_markers(raw_nirso_data, raw_nirsp_data, ...
-            sync_marker);
-                
-        norm_data = extract_tests(raw_nirsp_data, ... 
-            start_marker, end_marker, start_margin, end_margin);
-        subj.period(p).day(d).norm.nirsP = norm_data;        
-    end
-end
+raw_nirsp_data = copy_markers(raw_nirso_data, raw_nirsp_data, ...
+    sync_marker);
+
+test_data = extract_tests(raw_nirsp_data, start_marker, end_marker,...
+    start_margin, end_margin);
+
 
 
     function raw_nirsp_data = copy_markers(raw_nirso_data, ...
@@ -56,8 +48,7 @@ end
         % compute mean of offsets over all sync markers (in ms)
         all_offsets = compute_offset(raw_nirso_data, sync_marker, ...
             raw_nirsp_data, sync_marker);
-        fprintf('day %d:\n', d);
-        all_offsets
+        %all_offsets
 
         if max(all_offsets) - min(all_offsets) > max_offset
             error('difference between offsets more than max_offset')
@@ -66,8 +57,8 @@ end
         
         % get all markers and their times in oxymon
         [all_markers, all_times] = all_events(raw_nirso_data);
-        all_markers
-        all_times
+        %all_markers
+        %all_times
         % convert to portamon times
         all_times = all_times - offset;
         
