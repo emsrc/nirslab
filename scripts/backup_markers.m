@@ -53,12 +53,16 @@ for s = subjects
                 elseif strcmp(action,'restore')                    
                     fprintf('loading marker file  %s\n', marker_filename);
                     restore_events(norm.nirsO.test(t), marker_filename,...
-                        markers);                    
-                    fprintf('restored markers to norm data file %s\n', ...
-                        norm_filename);
+                        markers);   
                 else
                     error('unknown action: %s', action)
                 end
+            end
+            
+            if strcmp(action,'backup')
+                save(norm_filename, 'norm')
+                fprintf('restored markers to norm data file %s\n', ...
+                    norm_filename);
             end
         end
     end
