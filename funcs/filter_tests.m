@@ -5,7 +5,7 @@ for nirs = {'nirsO', 'nirsP'}
     nirs = nirs{1};
     for test_n = 1:length(norm.(nirs).test)
         test_data = norm.(nirs).test(test_n);
-        col_numbers = find(colsel(test_data, '(O2Hb|HHb|tHb|HbDiff)'));
+        col_numbers = find(colsel(test_data, '(O2Hb|HHb|tHb|HbDiff|TSI$)'));
         
         for col_n=col_numbers'
             norm.(nirs).test(test_n).samples{col_n} = ...
