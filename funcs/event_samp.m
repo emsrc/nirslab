@@ -6,6 +6,9 @@ function samp_nums = event_samp(data, marker)
 % marker: string
 %   any marker (matching is only on first character and case-insensitive)
 
-events = col(data, 'Event');
-% find sample numbers of events
-samp_nums = find(strncmpi(marker, events{1}, 1));
+samp_nums = data.events(marker);
+
+%%% Old method:
+% events = col(data, 'Event');
+%%% find sample numbers of events
+% samp_nums = find(strncmpi(marker, events{1}, 1));
