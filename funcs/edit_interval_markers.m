@@ -62,7 +62,7 @@ data.events(end_marker) = end_idx';
     function handles = draw_marker_lines(indices, color)    
         handles = [];
         
-        for x = indices'
+        for x = indices
             lh = line([x,x], ylim, 'color', color, 'LineStyle', '--');
             draggable(lh, 'h');
             handles = [handles, lh];
