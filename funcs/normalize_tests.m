@@ -1,6 +1,19 @@
-function norm = normalize_tests(norm, start_marker, mean_interval)
+function norm = normalize_tests(norm, start_marker, mean_interval, varargin)
+% norm = normalize_tests(norm, 'start_marker', mean_interval)
+% norm = normalize_tests(norm, 'start_marker', mean_interval, systems)
+% 
+% Normalize test data
+%
+% Examples:
+% normalize_tests(norm, "i", mean_interval)
+% normalize_tests(norm, "i", mean_interval, {'nirsO'})
+
+
+% Default
+systems = {'nirsO', 'nirsP'};
+if nargin > 3, systems = varargin{1}; end
  
-for nirs = {'nirsO', 'nirsP'}
+for nirs = systems
     nirs = nirs{1};
     
     for test_n=1:length(norm.(nirs).test)
