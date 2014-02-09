@@ -5,7 +5,7 @@
 
 warning on;
 
-subjects = [4 6 10];
+subjects = [4 6 8 10];
 days = 1:2;
 
 % filename pattern for normalized data
@@ -79,7 +79,7 @@ for pat = signal_patterns
                     % init maximum #samples found (=longest signal)  
                     max_samp_found = 0;
                     % init minimum #samples found (=shortest signal)
-                    min_samp_found = max_samples;
+                    min_samp_found = intmax;
                     
                     for s = subjects
                         try
@@ -136,7 +136,8 @@ for pat = signal_patterns
                     end                    
                     
                     if normalize == 1
-                        % subtract value at event marker from whole signal 
+                        % subtract value at start marker from whole signal
+                        % (or at first sample when start_offset > 0)
                         norm_sample = max(1, -start_offset + 1);               
                         signals = bsxfun(@minus, signals, signals(norm_sample,:));
                     end

@@ -5,7 +5,7 @@
 
 warning on;
 
-subjects = [4 6 10];
+subjects = [4 6 8 10];
 days = 1:2;
 
 % filename pattern for normalized data
