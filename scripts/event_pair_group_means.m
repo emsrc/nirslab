@@ -126,8 +126,7 @@ for pat = signal_patterns
                     end
                     
                     % create empty matrix for storing subjects' signals
-                    signals = zeros(max_samp_found, max(subjects));
-                    signals(:,:) = NaN;
+                    signals = nan(max_samp_found, max(subjects));
                     
                     % copy signals from cellmat to normal mat
                     for s=1:max(subjects)
