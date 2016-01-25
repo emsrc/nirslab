@@ -9,6 +9,9 @@ function tsc = read_velotron_tsc(filename)
 
 [col_names, samples] = read_velotron_output(filename);
 
+% remove duplicate samples
+samples = unique(samples, 'rows');
+
 time = samples(:, 1);
 tsc = tscollection(time, 'Name', 'Velotron data');
 tsc.TimeInfo.Units = 'milliseconds';

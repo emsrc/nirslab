@@ -1,7 +1,7 @@
 % Examples how to use velotron timeseries
 
 
-tsc = read_velotron_tsc('../../../data/velotron/12ce001_p1d1_vel.txt')
+tsc = read_velotron_tsc('../../../data/velotron/15nit001_s1_vel.txt')
 
 disp('### slice single time series from time 250 to 750 ###')
 subsample1 = getsampleusingtime(tsc.speed, 250, 750)

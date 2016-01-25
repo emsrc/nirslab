@@ -18,24 +18,30 @@ while (~feof(fid))
     end
 end
 
-% skip 5 newlines and read columns headers
-for i=1:6
+% skip empty lines
+while (~feof(fid)) 
     line = fgetl(fid);
+    if ~isempty(line)
+        break
+    end
 end
     
 col_names = textscan(line, '%s');
 col_names = col_names{1};
-
-% skip 5 newlines until line before start of samples
-for i=1:5
-    fgetl(fid);
-end
 
 % construct format string for text scanning
 format_str = '';
 
 for i=1:length(col_names)
     format_str = strcat(format_str, ' "%f"');
+end
+
+% skip empty lines
+while (~feof(fid)) 
+    line = fgetl(fid);
+    if ~isempty(line)
+        break
+    end
 end
 
 % read samples
