@@ -68,7 +68,6 @@ test_data = extract_tests(raw_nirsp_data, start_marker, end_marker,...
         % get nearest sample numbers in portamon 
         nirsp_samp_nums = round(all_times / samp_duration);
         
-        % *** FIXME: this should use event map instead of event columns 
         selection = colsel(raw_nirsp_data, 'Event');
         
         % delete all start markers in orginal portamon
@@ -83,6 +82,9 @@ test_data = extract_tests(raw_nirsp_data, start_marker, end_marker,...
         
         % copy markers to portamon
         raw_nirsp_data.samples{selection}(nirsp_samp_nums) = all_markers;
+        
+        % create events map
+        raw_nirsp_data.events = map_events(raw_nirsp_data);
     end
 
 
