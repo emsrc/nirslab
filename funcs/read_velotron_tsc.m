@@ -9,8 +9,10 @@ function tsc = read_velotron_tsc(filename)
 
 [col_names, samples] = read_velotron_output(filename);
 
-% remove duplicate samples
-samples = unique(samples, 'rows');
+% remove subsequent sample with the same time
+% (values other columns may differ)
+[~, ia, ~] = unique(samples(:,1));
+samples =samples(ia, :);
 
 time = samples(:, 1);
 tsc = tscollection(time, 'Name', 'Velotron data');
