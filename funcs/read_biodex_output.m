@@ -5,7 +5,7 @@ function t = read_biodex_output(filename)
 % Read data exported from Biodex in txt format
 % 
 % Returns a table object with variable names (i.e. columns) corresponding
-% to the to the columns/fields in the Biodex data 
+% to the columns/fields in the Biodex data 
 
 % simply skip first 6 lines
 t = readtable(filename, 'HeaderLines', 6);
