@@ -51,7 +51,11 @@ tt.Properties.UserData.SourceFilename = filename;
 opts = detectImportOptions(filename);
 tt.Properties.UserData.Header = readlines(filename, opts.VariableNamesLine-1);
 
-tt = table2timetable(tt);
+% convert datetime to duration in seconds
+tt.ElapsedTime = tt.ElapsedTime - tt.ElapsedTime(1);
+tt.ElapsedTime.Format = 's';
+
+tt = table2timetable(tt, 'RowTime', 'ElapsedTime');
 
 end
 
