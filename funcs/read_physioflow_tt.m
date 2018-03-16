@@ -1,13 +1,17 @@
-function t = read_physioflow_output(filename)
+function tt = read_physioflow_tt(filename)
 
 % read_physioflow_output(filename)
 %
-% Read data exported from Physioflow in txt format
+% Read data exported from Physioflow in csv format
 % 
-% Returns a table object with variable names (i.e. columns) corresponding
-% to the columns/fields in the Biodex data.
+% Returns a timetable object with variable names (i.e. columns) corresponding
+% to the columns/fields in the Physioflow data.
 % Source filename is stored in t.Properties.UserData.SourceFilename.
 % Skipped header lines are stored in t.Properties.UserData.Header
+
+% FIXME: Table header line contains variable names and sometimes units 
+% (between brackets), e.g. "CO (l/min)". 
+% Should be parsed into names and units.
 
 format = ...
    "%{HH:mm:ss}D" + ...     %  1: Elapsed Time
@@ -31,33 +35,27 @@ format = ...
    "%d" + ...               % 19: Signal Quality (%)
    "%s";                    % 20: Marks
 
-opts = detectImportOptions(filename);
-t = readtable(filename, 'Format', format, 'TreatAsEmpty', '=na()');
+tt = readtable(filename, 'Format', format, 'TreatAsEmpty', '=na()');
 
 % The three colums below contain a comma as a the "thousands separator",
 % e.g. "1,556.15", which Matlab does not understand.
 % To deal with this, we first read teh column as a string (cell array).
 % Then we remove the commas and convert to float 
-t.CTI = str2double(strrep(t.CTI, ',', ''));
-t.SVR_dyn_s_cm5_ = str2double(strrep(t.SVR_dyn_s_cm5_, ',', ''));
-t.SVRi_dyn_s_cm5_m__ = str2double(strrep(t.SVRi_dyn_s_cm5_m__, ',', ''));
+tt.CTI = str2double(strrep(tt.CTI, ',', ''));
+tt.SVR_dyn_s_cm5_ = str2double(strrep(tt.SVR_dyn_s_cm5_, ',', ''));
+tt.SVRi_dyn_s_cm5_m__ = str2double(strrep(tt.SVRi_dyn_s_cm5_m__, ',', ''));
 
-t.Properties.UserData.SourceFilename = filename;
+tt.Properties.UserData.SourceFilename = filename;
 
 % read header lines and store (unparsed) in t.Properties.UserData.Header 
+opts = detectImportOptions(filename);
+tt.Properties.UserData.Header = readlines(filename, opts.VariableNamesLine-1);
 
-fid = fopen(filename);
-header = cell(opts.VariableNamesLine-1, 1);
+% convert datetime to duration in seconds
+tt.ElapsedTime = tt.ElapsedTime - tt.ElapsedTime(1);
+tt.ElapsedTime.Format = 's';
 
-for i=1:opts.VariableNamesLine-1
-    header{i} = fgetl(fid);
-end    
-
-fclose(fid);
-
-t.Properties.UserData.Header = header;
+tt = table2timetable(tt, 'RowTime', 'ElapsedTime');
 
 end
-
-
 
