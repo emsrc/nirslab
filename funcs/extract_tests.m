@@ -65,9 +65,13 @@ for t=1:size(start_samp,1)
     test.num_cols = num_cols;
     test.num_samples = length(test.samples{1});
     
-    % create mapping of event markers to their indices 
+    % create mapping of event markers to their indices
+    % relative to test sample slice
     % (different from the raw mapping!)
-    test.events = map_events(test);
+    test.events = containers.Map;
+    for k=raw_data.events.keys
+        test.events(k{1}) = raw_data.events(k{1}) - (start_samp - 1);
+    end
     
     test_data.test(t) = test;
 end

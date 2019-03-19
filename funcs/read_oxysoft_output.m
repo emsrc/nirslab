@@ -19,6 +19,7 @@ function data = read_oxysoft_output(filename)
 %                samples: {1x59 cell}
 %               exp_name: 'Trial 4PM'
 %               num_cols: 59
+%               events: [4×1 containers.Map]
 %
 % Hint: To get a matrix without the first and final columns from data.sample
 % (i.e. without sample numbers and events), simply use the following:
