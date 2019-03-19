@@ -1,8 +1,8 @@
 function tt = read_velotron_tt(filename)
 
-% read_velotron_output(filename)
+% read_velotron_tt(filename)
 %
-% Read data exported from Velotron
+% Read data exported from Velotron as a timetable object
 % 
 % Returns a timetable object with variable names (i.e. columns) corresponding
 % to the to the columns/fields in the Velotron data 
