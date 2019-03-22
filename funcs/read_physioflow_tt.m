@@ -27,23 +27,26 @@ format = ...
    "%s" + ...               % 11: CTI
    "%f" + ...               % 12: VET (ms)
    "%f" + ...               % 13: EDFR (%)
-   "%f" + ...               % 14: LCWi (kg.m/m<B2>) 
+   "%s" + ...               % 14: LCWi (kg.m/m<B2>) 
    "%s" + ...               % 15: SVRi (dyn.s/cm5.m<B2>)
    "%s" + ...               % 16: SVR (dyn.s/cm5)
-   "%f" + ...               % 17: EDV est (ml) 
+   "%s" + ...               % 17: EDV est (ml) 
    "%f" + ...               % 18: EF est (%)
    "%d" + ...               % 19: Signal Quality (%)
    "%s";                    % 20: Marks
 
 tt = readtable(filename, 'Format', format, 'TreatAsEmpty', '=na()');
 
-% The three colums below contain a comma as a the "thousands separator",
+% The colums below contain a comma as a the "thousands separator",
 % e.g. "1,556.15", which Matlab does not understand.
-% To deal with this, we first read teh column as a string (cell array).
+% To deal with this, we first read the column as a string (cell array).
 % Then we remove the commas and convert to float 
-tt.CTI = str2double(strrep(tt.CTI, ',', ''));
-tt.SVR_dyn_s_cm5_ = str2double(strrep(tt.SVR_dyn_s_cm5_, ',', ''));
-tt.SVRi_dyn_s_cm5_m__ = str2double(strrep(tt.SVRi_dyn_s_cm5_m__, ',', ''));
+%tt.CTI = str2double(strrep(tt.CTI, ',', ''));
+tt.CTI = str2double(tt.CTI);
+tt.LCWi_kg_m_m__ = str2double(tt.LCWi_kg_m_m__);
+tt.SVR_dyn_s_cm5_ = str2double(tt.SVR_dyn_s_cm5_);
+tt.SVRi_dyn_s_cm5_m__ = str2double(tt.SVRi_dyn_s_cm5_m__);
+tt.EDVEst_ml_ =  str2double(tt.EDVEst_ml_);
 
 tt.Properties.UserData.SourceFilename = filename;
 
