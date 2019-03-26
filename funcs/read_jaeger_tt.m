@@ -97,8 +97,12 @@ end
 
 
 function part_tt = read_table_part(part_fname, part_var_names)
-    part_table = readtable(part_fname, 'TreatAsEmpty', '-');
-
+    part_table = readtable(part_fname,...
+        'FileType', 'text',...
+        'HeaderLines', 3,...
+        'MultipleDelimsAsOne', 1,...
+        'TreatAsEmpty', {'-'});
+    
     % delete last column
     % FIXME: do in readtable()
     part_table(:, end) = [];
