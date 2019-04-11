@@ -11,12 +11,17 @@ function tt = nirs_to_tt(test)
 
 % compute time in milliseconds from sample numbers and sample rate
 samp_num = test.samples{1};
-time = milliseconds(samp_num * (1000 / test.export_sample_rate));
+Time = milliseconds(samp_num * (1000 / test.export_sample_rate));
 
 % mangle orignal columns to obtain valid Matlab names
 varnames = matlab.lang.makeValidName(test.legend(1:end));
 
-tt = timetable(time, test.samples{1:end}, 'VariableNames', varnames);
+% It seems that newer versions of Matlab after R2017a do not 
+% make the rowtimes available as under the propertt 'Time'
+% (i.e. tt.Time), but instead as the workspace name of 
+% the first argument in the call to the timetable constructor. 
+% Hence the time variable is called 'Time' rather than 'time' here...
+tt = timetable(Time, test.samples{1:end}, 'VariableNames', varnames);
 
 % copy some metadata in UserData field
 tt.Properties.UserData.events =  test.events;
