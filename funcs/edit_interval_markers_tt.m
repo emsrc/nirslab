@@ -58,7 +58,7 @@ plot(signals);
 xlim([1 height(tt)]);
 title(label);
 
-start_handles = draw_marker_lines(start_idx, 'green');
+start_handles = draw_marker_lines(start_idx, [0 153/255 76/255]);
 end_handles = draw_marker_lines(end_idx, 'red');
 
 % delete old markers 
@@ -83,7 +83,7 @@ tt{end_idx, event_name} = {end_marker};
         handles = [];
         
         for x = indices.'
-            lh = line([x,x], ylim, 'color', color, 'LineStyle', '--');
+            lh = line([x,x], ylim, 'color', color, 'LineStyle', ':', 'LineWidth',2);
             draggable(lh, 'h');
             handles = [handles, lh];
         end
