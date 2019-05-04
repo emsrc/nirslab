@@ -53,7 +53,11 @@ if to_sync_marker
 else
     % if no target sync marker is given,
     % sync to start of signal
-    to_sync_marker_time = to_tt.Properties.RowTimes(1);
+    to_sync_marker_time = 0;
+    
+    % Used to be as below , but changed to zero because Jaeger only starts to 
+    % produce output after a some time has gone by: 
+    % to_sync_marker_time = to_tt.Properties.RowTimes(1);
 end
 
 time_delta = from_sync_marker_time - to_sync_marker_time;
