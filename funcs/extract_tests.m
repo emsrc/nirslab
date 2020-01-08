@@ -69,12 +69,62 @@ for t=1:size(start_samp,1)
     % relative to test sample slice
     % (different from the raw mapping!)
     test.events = containers.Map;
+    
     for k=raw_data.events.keys
-        test.events(k{1}) = raw_data.events(k{1}) - (start_samp - 1);
+        k = k{1};
+        
+        for v=raw_data.events(k)
+            % is the marker located within this test?
+            if start_samp(t) <= v && v <= end_samp(t)
+                % rescale marker relative to start of this test
+                relative_v = v - start_samp(t);
+                
+                if test.events.isKey(k)
+                    % append to existing map entry
+                    test.events(k) =  [test.events(k) relative_v];
+                else
+                    % create new map entry for this marker
+                    test.events(k) = relative_v;
+                end
+            end
+        end
     end
     
     test_data.test(t) = test;
 end
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
