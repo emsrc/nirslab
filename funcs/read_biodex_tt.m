@@ -10,7 +10,7 @@ function tt = read_biodex_tt(filename)
 % NB 'detectImportOptions' fails to handle 'POS (ANAT)' because of the
 % space in the name
 opts = detectImportOptions(filename);
-header_lines = opts.DataLine - 1;
+header_lines = opts.DataLine(1) - 1;
 
 % simply skip first 6 lines
 tt = readtable(filename, 'HeaderLines', header_lines);
