@@ -107,7 +107,12 @@ tt{end_idx, event_name} = {end_marker};
         if valid_markers
             delete(gcf)
         else
-            errordlg('Invalid marker sequence! Try again...');
+            answer = questdlg('The current sequence of markers is not valid! Are you sure you want to quit?', ...
+                'Invalid marker sequence', ...
+                'Yes','No','No');
+            if strcmp(answer, 'Yes')
+                delete(gcf)
+            end
         end
     end
 
