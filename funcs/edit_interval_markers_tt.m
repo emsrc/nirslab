@@ -4,9 +4,11 @@ function tt = edit_interval_markers_tt(tt, signal_names, event_name, start_marke
 % tt = edit_interval_markers_tt(tt, signal_names, event_name, start_marker, end_marker, no_marker, label)
 %
 %   tt: timetable
-%       result from e.g. nirs_to_tt(
+%       result from e.g. nirs_to_tt()
 %   signal_names: cell array (string)
 %       names of variables to plot
+%   event_name: char (string)
+%       name of variable containing the events
 %   start_marker: char (string)
 %       start of interval marker in events (single letter) 
 %   end_marker: char (string)
