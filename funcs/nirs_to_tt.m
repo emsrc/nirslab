@@ -8,6 +8,9 @@ function tt = nirs_to_tt(test)
 % Returns a timetable according to the columns/fields in the Nirs data.
 % Time in miliseconds is computed from sample numbers and sample rate.
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
 
 % compute time in milliseconds from sample numbers and sample rate
 samp_num = test.samples{1};

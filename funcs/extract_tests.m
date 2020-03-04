@@ -22,6 +22,9 @@ function  test_data = extract_tests(raw_data, ...
 % test_data: struct array
 %    struct with field 'test' containing the data per test 
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
 
 num_cols = raw_data.num_cols;
     

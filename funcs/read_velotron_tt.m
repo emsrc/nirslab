@@ -7,6 +7,9 @@ function tt = read_velotron_tt(filename)
 % Returns a timetable object with variable names (i.e. columns) corresponding
 % to the to the columns/fields in the Velotron data 
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
 
 % 'readtable' function cannot cope with spaces included in quoted values,
 % so this requires more work...

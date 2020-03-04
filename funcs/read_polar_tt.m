@@ -17,6 +17,9 @@ function polar_tt = read_polar_tt(filename, marker, tolerance)
 % 'HRBpm' and 'Event', where events are the laptimes from the second sheet. 
 % Source filename is stored in tt.Properties.UserData.SourceFilename.
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
 
 % read polar HR from first sheet
 polar_tt = readtable(filename, 'Sheet', 1, 'Range', 'A:B');

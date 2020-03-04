@@ -2,6 +2,10 @@ function [ map ] = map_events(subj_data)
 % construct a mapping from event markers (single chars)
 % to an array of their indices
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
 events = col(subj_data, 'Event');
 events = events{1};
 

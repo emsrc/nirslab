@@ -6,6 +6,10 @@ function times = event_times(data, marker)
 % marker: string
 %   any marker (matching is case-insensitive)
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
 % find sample numbers of events
 samp_nums = event_samp(data, marker);
 

@@ -1,4 +1,9 @@
 function plot_tests(nirso_data, nirsp_data)
+
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
 pattern = '(O2Hb|HHb|tHb|HbDiff)';
 
 %pattern = 'Rx1 - Tx1a';

@@ -15,6 +15,10 @@ function samp_nums = event_samp(data, marker)
 % which allows setting start & end markers in the raw file before 
 % normalisation.
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
 if data.events.isKey(lower(marker))
     samp_nums = data.events(lower(marker))';
 else

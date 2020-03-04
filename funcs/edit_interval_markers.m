@@ -26,6 +26,10 @@ function data = edit_interval_markers(data, signal_pat, ...
 % - markers must be single characters
 % - events must not contain combined markers like 'I G'
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
 % get start and end indices of markers 
 start_idx = data.events(start_marker);
 end_idx = data.events(end_marker);

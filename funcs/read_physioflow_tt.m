@@ -13,6 +13,10 @@ function tt = read_physioflow_tt(filename)
 % (between brackets), e.g. "CO (l/min)". 
 % Should be parsed into names and units.
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
 format = ...
    "%{HH:mm:ss}D" + ...     %  1: Elapsed Time
    "%{HH:mm:ss}D" +  ...    %  2: Time

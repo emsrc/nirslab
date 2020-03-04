@@ -13,5 +13,9 @@ function print_events_tt(tt, event_name)
 %TODO
 % name of events var should be part of of tt properties
 
- tt(~strncmpi('0', tt.(event_name), 1), event_name)
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
+tt(~strncmpi('0', tt.(event_name), 1), event_name)
 

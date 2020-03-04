@@ -8,6 +8,9 @@ function raw = normalize_vot10(raw, varargin)
 % normalize_vot10(raw)
 % normalize_vot10(raw, {'nirsO'})
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
 
 % Default
 systems = {'nirsO'};

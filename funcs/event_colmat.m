@@ -22,6 +22,10 @@ function mat = event_colmat(data, marker, left_offset, right_offset, ...
 % event_colmat(data, 'A', 'B', -100, 100, 2, '308', 'R1', 'T1', 'O2Hb')
 % event_colmat(data, 'A', 'B', 0, 0, 1, '\[308\]')
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
 % get sample of n-th marker event
 marker_samples = event_samp(data, marker);
 event_n_samp = marker_samples(event_n);

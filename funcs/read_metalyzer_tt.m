@@ -13,6 +13,9 @@ function tt = read_metalyzer_tt(filename)
 % Source filename is stored in tt.Properties.UserData.SourceFilename.
 % Preamble data is stored in tt.Properties.UserData.Preamble.
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
 
 % NB This is a quick & dirty solution for the time being,
 % which relies on reading the table twice.

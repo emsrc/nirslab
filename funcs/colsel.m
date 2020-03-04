@@ -13,6 +13,10 @@ function selection = colsel(data, varargin)
 % col(data, '308', 'R1', 'T1', 'O2Hb')
 % cold(data, '\[308\]')
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
 pattern = '.*';
 
 for subpat = varargin

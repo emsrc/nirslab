@@ -19,6 +19,10 @@ function [maxtab, mintab]=minpeakdet(v, delta, x)
 % Eli Billauer, 3.4.05 (Explicitly not copyrighted).
 % This function is released to the public domain; Any use is allowed.
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
 maxtab = [];
 mintab = [];
 

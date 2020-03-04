@@ -44,6 +44,10 @@ function tt = edit_interval_markers_tt(tt, signal_names, event_name, start_marke
 % nirs_tt = edit_interval_markers_tt(nirs_tt, signal_names, event_name, start_marker, end_marker, no_marker, label);
 % 
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
 events = tt{:, event_name};
 start_idx = find(strncmpi(start_marker, events, 1));
 end_idx = find(strncmpi(end_marker, events, 1));

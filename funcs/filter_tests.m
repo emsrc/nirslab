@@ -1,6 +1,10 @@
 function norm = filter_tests(norm, filter)
 % apply filter to selected signals in normalized test samples
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
 for nirs = {'nirsO', 'nirsP'}
     nirs = nirs{1};
     for test_n = 1:length(norm.(nirs).test)

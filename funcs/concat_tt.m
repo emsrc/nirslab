@@ -7,6 +7,10 @@ function tt3 = concat_tt(tt1, tt2)
 % 
 % Assumes both timetables have the same sample frequency. 
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
 % determine period as most frequent time difference between samples
 period = mode(diff(tt1.Properties.RowTimes));
 

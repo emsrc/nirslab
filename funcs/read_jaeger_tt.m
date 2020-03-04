@@ -13,6 +13,9 @@ function tt = read_jaeger_tt(filename)
 % Hint: view GDT files from command line with
 % iconv -f ISO-8859-1 -t UTF-8 <17hyp001_t2_m2_c1_jaeg.GDT | tr '\r' '\n' | less
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
 
 % FIXME: what is the right windows char encoding?
 fid = fopen(filename,'r'); %, 'l', 'ISO-8859-1');

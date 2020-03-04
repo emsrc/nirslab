@@ -8,6 +8,9 @@ function norm = normalize_tests(norm, start_marker, mean_interval, varargin)
 % normalize_tests(norm, "i", mean_interval)
 % normalize_tests(norm, "i", mean_interval, {'nirsO'})
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
 
 % Default
 systems = {'nirsO', 'nirsP'};

@@ -23,6 +23,10 @@ function mat = events_colmat(data, start_marker, end_marker, ...
 % events_colmat(data, 'A', 'B', -100, 100, 2, '308', 'R1', 'T1', 'O2Hb')
 % events_colmat(data, 'A', 'B', 0, 0, 1, '\[308\]')
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
 % get start sample of n-th event +/- start offset
 samps = event_samp(data, start_marker);
 start_marker_samp = samps(event_n);

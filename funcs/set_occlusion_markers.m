@@ -16,6 +16,10 @@ function data = set_occlusion_markers(data,...
 %
 % Warning: old start and end markers in event map will be deleted! 
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
 cuffp_signal = colmat(data, 'AD1');
 % define delta (half of max-min)
 maxcuffp = max(cuffp_signal);

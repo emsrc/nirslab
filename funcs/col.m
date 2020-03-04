@@ -13,6 +13,10 @@ function columns = col(data, varargin)
 % col(data, '308', 'R1', 'T1', 'O2Hb')
 % cold(data, '\[308\]')
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
 % weird syntax trick to pass on varargin
 selection = colsel(data, varargin{:});
 columns = data.samples(selection);

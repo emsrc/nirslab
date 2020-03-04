@@ -14,6 +14,10 @@ function tt = read_lode_tt(filename)
 % Devices tab data is stored in tt.Properties.UserData.Devices.
 % LEM tab data is stored in tt.Properties.UserData.LEM.
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
 table = readtable(filename, 'Sheet', 3);
 
 table.Time = seconds(table.Time);

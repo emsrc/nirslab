@@ -1,5 +1,9 @@
 function data = restore_events(data, filename, markers)
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
 load(filename, 'events')
 
 for m = markers

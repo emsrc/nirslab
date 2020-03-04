@@ -25,6 +25,10 @@ function data = read_oxysoft_output(filename)
 % (i.e. without sample numbers and events), simply use the following:
 % cell2mat(data.samples(2:data.num_cols-1))
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
 fid = fopen(filename,'r');
 data.filename = filename;
 data.header = {};

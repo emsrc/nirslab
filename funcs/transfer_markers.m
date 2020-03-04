@@ -35,6 +35,9 @@ function to_tt = transfer_markers(from_tt, to_tt, ...
 %                       time tolerance in seconds allowed when mapping
 %                       source to target times; cf. withtol() function 
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
 
 % if not present, add new variable to target table for markers
 if ~any(strcmp(to_tt.Properties.VariableNames, to_event_var))

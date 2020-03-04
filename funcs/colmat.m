@@ -12,6 +12,11 @@ function mat = colmat(data, varargin)
 % Examples:
 % colmat(data, 'R1')
 % colmat(data, '308', 'R1', 'T1', 'O2Hb')
+
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
 % colmat(data, '\[308\]')
 
 % weird syntax trick to pass on varargin

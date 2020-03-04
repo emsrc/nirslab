@@ -4,6 +4,9 @@ function tt = extend_tt(tt, time_to_add)
 %
 % Extend timetable tt with empty rows, adding time_to_add seconds
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
 
 if ~isduration(time_to_add)
     time_to_add = seconds(time_to_add);

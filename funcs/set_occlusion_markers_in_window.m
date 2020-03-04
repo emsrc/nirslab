@@ -38,6 +38,9 @@ function data = set_occlusion_markers_in_window(data,...
 %                                   'NPEAK', num_occl, ...
 %                                   'SORTSTR', 'desc');
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
 
 win_start_indices = data.events(window_start_marker);
 win_end_indices = data.events(window_end_marker);

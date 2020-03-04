@@ -28,6 +28,9 @@ function test_data = extract_portamon_tests(...
 % test_data: struct array
 %    struct with field 'test' containing the data per test 
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
 
 % maximum time difference allowed between offsets in ms
 max_offset = 1000;

@@ -7,6 +7,10 @@ function tt = read_biodex_tt(filename)
 % Returns a timetable object with variable names (i.e. columns) corresponding
 % to the columns/fields in the Biodex data 
 
+warning('nirslab:deprecated', 'function %s is deprecated!', mfilename('fullpath'))
+% Hint: to switch off these warning messages, use
+% >> warning('off', 'nirslab:deprecated')
+
 % NB 'detectImportOptions' fails to handle 'POS (ANAT)' because of the
 % space in the name
 opts = detectImportOptions(filename);
